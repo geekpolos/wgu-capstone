@@ -1,0 +1,37 @@
+##NPM
+Start application by running "npm init"
+
+##Git
+
+Initialize Project 
+To start off the project, use "git init" to initalize Git in the project. 
+
+Ignore Files
+Use .gitignore to ignore files and folders that Git should not track. A common use is to ignore the folder node_modules/.
+
+###How to push local environment to GitHub and Heroku.
+1) git status
+This step isn't necessary, but it helps me know what files are ready to be added. 
+
+2) git add .
+Then, I can add all files using the dot operator or I can choose individual files. 
+
+3) git commit -m "update message goes here"
+After the files are added, I commit my changes using git commit follow by the message of my commit. 
+
+3) git push
+Once I've added the files, I push the changes to my GitHub repo. 
+
+4) git push heroku master
+Finally, I push my changes to heroku. 
+
+These steps are made available because I've setup SSH keys with GitHub and Heroku. 
+
+###Running files locally
+
+npm start
+This command kicks off Node locally so I can test locally. The port for the web-server is on 3000 so I would use localhost:3000
+
+nodemon src/app.js -e js,hbs
+Or, I can use nodemon to relaunch the application everytime I make a change. The arguments js,hbs stand for javascript,handbrake which indiciates to restart any javascript or handbrake files. 
+Update: I added a shortcut to package.json so I can use "npm run dev" as a shortcut.
