@@ -9,6 +9,9 @@ To start off the project, use "git init" to initalize Git in the project.
 Ignore Files
 Use .gitignore to ignore files and folders that Git should not track. A common use is to ignore the folder node_modules/.
 
+Setup Remote Repo
+After a repo is created on GitHub.com, I can push an existing reporistory by running the command "git remote add origin https://github.com/geekpolos/wgu-capstone.git"
+
 ###How to push local environment to GitHub and Heroku.
 1) git status
 This step isn't necessary, but it helps me know what files are ready to be added. 
