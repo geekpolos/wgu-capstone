@@ -1,6 +1,7 @@
 ##NPM
 Start application by running "npm init"
 
+##################
 ##Git
 
 Initialize Project 
@@ -12,7 +13,21 @@ Use .gitignore to ignore files and folders that Git should not track. A common u
 Setup Remote Repo
 After a repo is created on GitHub.com, I can push an existing reporistory by running the command "git remote add origin https://github.com/geekpolos/wgu-capstone.git"
 
+Push Initial Code
+Then, run "git push -u origin master" to push the initial code to GitHub.
+
+##################
+##Heroku
+
+Add Keys to herkou
+Enter the comman "heroku keys:add" to add local keys to heroku to create a secure connection
+
+Create Heroku Server
+You can create a server on Heroku by typing in the following: "heroku create server-name". The server-name is a placeholder for what you want the server name to be.
+
+##################
 ###How to push local environment to GitHub and Heroku.
+
 1) git status
 This step isn't necessary, but it helps me know what files are ready to be added. 
 
@@ -30,6 +45,7 @@ Finally, I push my changes to heroku.
 
 These steps are made available because I've setup SSH keys with GitHub and Heroku. 
 
+##################
 ###Running files locally
 
 npm start
