@@ -48,7 +48,7 @@ These steps are made available because I've setup SSH keys with GitHub and Herok
 ##################
 ###Running files locally
 
-npm start
+npm run start
 This command kicks off Node locally so I can test locally. The port for the web-server is on 3000 so I would use localhost:3000
 
 nodemon src/app.js -e js,hbs
