@@ -1,0 +1,21 @@
+/* Show it is fixed to the top */
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+}
+
+#homepage-jumbotron {
+    background-image: url(../images/jumbotron-home.jpg);
+    min-height: 15rem;
+    color: white;    
+}
+
+#homepage-jumbotron h1 {
+    font-size: 3.5rem;
+}
+
+#homepage-jumbotron p {
+    font-size: 1.5rem;
+    padding-left: 10%;
+    padding-right: 10%;
+}

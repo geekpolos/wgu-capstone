@@ -54,3 +54,12 @@ This command kicks off Node locally so I can test locally. The port for the web-
 nodemon src/app.js -e js,hbs
 Or, I can use nodemon to relaunch the application everytime I make a change. The arguments js,hbs stand for javascript,handbrake which indiciates to restart any javascript or handbrake files. 
 Update: I added a shortcut to package.json so I can use "npm run dev" as a shortcut.
+
+##################
+###Design Choices
+
+Pastel Blue
+#5cc9f2
+rgb(92, 201, 242)
+
+Jumbotron photo from https://pixabay.com/photos/startup-start-up-people-593341/
