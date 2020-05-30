@@ -28,44 +28,58 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="./stock-tracker">Stock Tracker</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Help</a>
+            <a class="nav-link" href="./help">Help</a>
           </li>
         </ul>        
       </div>
     </nav>
 
     <main role="main" class="container-fluid">
-        <div class="jumbotron jumbotron-fluid text-center rounded" id="homepage-jumbotron">
+        <div class="jumbotron jumbotron-fluid text-center rounded addBottomSpacing" id="homepage-jumbotron">
             <h1>Stock Tracker</h1>
             <p class="lead">Use our stock tracker to track your stock prices, inventory, dividends, and more.</p>        
         </div>
 
-        <div class="row">
+        <div class="row addBottomSpacing">
+            <div class="col-sm-8 mx-auto text-center">
+                <h2>About Stock Tracker</h2>
+                <p>Our Stock Tracker application will alow you to enter stock information to allow you to track performance of your portfolio. We allow you to enter the number of shares you won, your stock price, dividend yield, and more.</p>
+                <p>In addition to tracking your information on our website, our team has integrated the stock tracker information with a mobile app so you may track your information on the go. Currently, the mobile is available on Android and iPhone mobile devices.</p>
+            </div>
+        </div>
+
+        <div class="row text-center addBottomSpacing lightGreyBackground" id="featureRow">
             <div class="col-sm-4">
                 <h3>Track Your Stocks</h3>
-                <p>Enter your stock information below to track your stocks and how your stock performance in today's market.</p>
+                <img src="./images/track-your-stocks.jpg" class="img-fluid rounded" alt="Track Your Stocks" />
+                <p class="paragraphPadding">Enter your stock information below to track your stocks and how your stock performance in today's market.</p>
             </div>
             <div class="col-sm-4">
                 <h3>Mobile App</h3>
-                <p>Our Stock Tracker product is tightly integrated with our mobile app so you can track your stocks online or on the go.</p>
+                <img src="./images/mobile-app.jpg" class="img-fluid rounded" alt="Mobile App" />
+                <p class="paragraphPadding">Our Stock Tracker product is tightly integrated with our mobile app so you can track your stocks online or on the go.</p>
             </div>
             <div class="col-sm-4">
-                <h3>Help</h3>
-                <p>Need a little help? We have you covered. Visit our help page to learn more about the stock tracker and how to get the most out of it.</p>
+                <h3>Tracker Help</h3>
+                <img src="./images/tracker-help.jpg" class="img-fluid rounded" alt="Tracker Help" />
+                <p class="paragraphPadding">Need a little help? We have you covered. <a href="./help">Visit our help page</a> to learn more about the stock tracker and how to get the most out of it.</p>
+            </div>
+        </div>       
+
+        <div class="row addBottomSpacing">
+            <div class="col-sm-7">
+                <img src="./images/about-the-developer.jpg" class="img-fluid rounded" alt="About the developer" />
+            </div>
+            <div class="col-sm-5 paragraphPadding">
+                <h3>About the Deveoper</h3>
+                <p>Daniel Williams lives in Noblesville, Indiana and has put the stock tracker app together for his WGU Capstone project. After completing his capstone project, Daniel will have earned a Bachelor of Science in Software Development.</p>
+                <p>This project was built with Node.JS, Express, and MongoDB. The app is currently hosted on Heroku.</p>
             </div>
         </div>
 
-        <div class="row" id="" style="background-color: #cfcfc4; height: 15rem;">
-            breaker
-        </div>
-
-        <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </main>
 
     <script src="/js/app.js"></script>
