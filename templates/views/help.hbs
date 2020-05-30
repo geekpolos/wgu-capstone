@@ -1,0 +1,83 @@
+{{>header}}
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <span class="navbar-brand">My Stock Tracker</span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./track-stocks">Track Stocks</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./help">Help<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>        
+      </div>
+    </nav>
+
+    <main role="main" class="container-fluid">
+        <div class="jumbotron jumbotron-fluid text-center rounded addBottomSpacing" id="homepage-jumbotron">
+            <h1>Help Page</h1>
+            <p class="lead">Get help on My Stock Tracker</p>
+        </div>
+
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Is there a premium version of My Stock Tracker?
+                    </button>
+                </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    My Stock Tracker is free for anyone to use. There are plans to expand My Stock Tracker to include real-time data, but as of today, we are offering My Stock Tracker for free and accepting donations.
+                </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Where can I get the mobile version of the My Stock Tracker app?
+                    </button>
+                </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    My Stock Tracker is available on Google Play and iTunes.
+                </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Where do I go to use Stock Tracker?
+                    </button>
+                </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Head over to <a href="./track-stocks">Track Stocks</a> to start tracking your stocks today.
+                </div>
+                </div>
+            </div>
+            </div>
+
+    </main>
+
+    {{>footer}}
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

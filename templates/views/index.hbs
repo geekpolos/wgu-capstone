@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Home | WGU Capstone</title>
-        <link rel='icon' href='./images/stock-icon.png' />
-                
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="./js/bootstrap.min.js"></script>
-
-        <link rel="stylesheet" href="/css/styles.css">  
-    </head>
+{{>header}}
 
 <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <span class="navbar-brand">My Stock Tracker</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./stock-tracker">Stock Tracker</a>
+            <a class="nav-link" href="./track-stocks">Track Stocks</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./help">Help</a>
@@ -40,7 +25,7 @@
     <main role="main" class="container-fluid">
         <div class="jumbotron jumbotron-fluid text-center rounded addBottomSpacing" id="homepage-jumbotron">
             <h1>Stock Tracker</h1>
-            <p class="lead">Use our stock tracker to track your stock prices, inventory, dividends, and more.</p>        
+            <p class="lead">Use our stock tracker to track your stock prices, inventory, dividends, and more</p>        
         </div>
 
         <div class="row addBottomSpacing">
@@ -54,33 +39,36 @@
         <div class="row text-center addBottomSpacing lightGreyBackground" id="featureRow">
             <div class="col-sm-4">
                 <h3>Track Your Stocks</h3>
-                <img src="./images/track-your-stocks.jpg" class="img-fluid rounded" alt="Track Your Stocks" />
-                <p class="paragraphPadding">Enter your stock information below to track your stocks and how your stock performance in today's market.</p>
+                <img src="./images/track-your-stocks.jpg" class="img-fluid rounded imageBorder" alt="Track Your Stocks" />
+                <p class="paragraphPadding"><a href="./track-stocks">Enter your stock information</a> to track your stocks and how your stock performance in today's market.</p>
             </div>
             <div class="col-sm-4">
                 <h3>Mobile App</h3>
-                <img src="./images/mobile-app.jpg" class="img-fluid rounded" alt="Mobile App" />
+                <img src="./images/mobile-app.jpg" class="img-fluid rounded imageBorder" alt="Mobile App" />
                 <p class="paragraphPadding">Our Stock Tracker product is tightly integrated with our mobile app so you can track your stocks online or on the go.</p>
             </div>
             <div class="col-sm-4">
                 <h3>Tracker Help</h3>
-                <img src="./images/tracker-help.jpg" class="img-fluid rounded" alt="Tracker Help" />
+                <img src="./images/tracker-help.jpg" class="img-fluid rounded imageBorder" alt="Tracker Help" />
                 <p class="paragraphPadding">Need a little help? We have you covered. <a href="./help">Visit our help page</a> to learn more about the stock tracker and how to get the most out of it.</p>
             </div>
         </div>       
 
         <div class="row addBottomSpacing">
             <div class="col-sm-7">
-                <img src="./images/about-the-developer.jpg" class="img-fluid rounded" alt="About the developer" />
+                <img src="./images/about-the-developer.jpg" class="img-fluid rounded imageBorder" alt="About the developer" />
             </div>
             <div class="col-sm-5 paragraphPadding">
-                <h3>About the Deveoper</h3>
+                <h3>About the Developer</h3>
                 <p>Daniel Williams lives in Noblesville, Indiana and has put the stock tracker app together for his WGU Capstone project. After completing his capstone project, Daniel will have earned a Bachelor of Science in Software Development.</p>
                 <p>This project was built with Node.JS, Express, and MongoDB. The app is currently hosted on Heroku.</p>
+                <br /><br /><br />
             </div>
         </div>
 
     </main>
+
+    {{>footer}}
 
     <script src="/js/app.js"></script>
 </body>

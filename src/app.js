@@ -24,6 +24,12 @@ app.get('', (req, res) => {
     })
 })
 
+app.get('/help', (req, res) => {
+    res.render('help', {
+
+    })
+})
+
 app.listen(port, () => {
     console.log('Server started on port ' + port + '.')
 })

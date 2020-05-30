@@ -62,4 +62,5 @@ Pastel Blue
 #5cc9f2
 rgb(92, 201, 242)
 
-Jumbotron photo from https://pixabay.com/photos/startup-start-up-people-593341/
+Photos
+The photos used in this sample app are pulled from pixabay.com.
