@@ -24,6 +24,12 @@ app.get('', (req, res) => {
     })
 })
 
+app.get('/track-stocks', (req, res) => {
+    res.render('track-stocks', {
+
+    })
+})
+
 app.get('/help', (req, res) => {
     res.render('help', {
 
