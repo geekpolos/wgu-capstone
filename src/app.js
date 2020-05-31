@@ -1,9 +1,16 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const dont = require('dotenv')
 
 const app = express()
 const port = process.env.PORT || 3000
+
+const mongoose = require('mongoose')
+const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+mongoose.connect(mongoURI)
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'))
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public/')

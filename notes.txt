@@ -64,3 +64,6 @@ rgb(92, 201, 242)
 
 Photos
 The photos used in this sample app are pulled from pixabay.com.
+
+wgu-capstone
+mycapstone2020
