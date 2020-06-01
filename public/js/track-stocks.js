@@ -5,22 +5,51 @@ const stockTable = document.querySelector('stock-table-body')
 fetch('/track-stocks/get').then((response) => {
     response.json().then((data) => {
         if (data.error) {
-            console.log('something went wrong')
-            //messageOne.textContent = data.error
-        } else {
-            console.log(data)
+            document.getElementById("alertMessage").innerHTML = '<div class="alert alert-danger" role="alert" id="alertMessage">My Stock Tracker was unable to connect to the database. Please try again later.</div>';            
+        } else {            
+            let counter = 0;
 
-            var table = document.getElementById("stock-table");
+            data.forEach(function(table) {
+                
+                let ticker = table.ticker;
+                let quantity = table.quantity
+                let price = table.price
+                counter++;
 
-            var rowNode = document.createElement("tr");
-            var cellNode = document.createElement("td");
-            var textNode = document.createTextNode(data.stock.ticker);
+                var select = document.getElementById("stockDropdownMenu");
+                select.options[select.options.length] = new Option(ticker, ticker);
 
-            cellNode.appendChild(textNode);
-            rowNode.appendChild(cellNode);
-            table.appendChild(rowNode);
+                /* Populate stock table with user stock information */
+                let stockTable = document.getElementById("stock-table");
+                let rowNode = document.createElement("tr");
+                
+                let numberNode = document.createElement("th")
+                let numberDisplay = document.createTextNode(counter)
+                numberNode.appendChild(numberDisplay)
+                rowNode.appendChild(numberNode)
 
-            console.log('should be done')
+                let tickerNode = document.createElement("td");
+                let tickerText = document.createTextNode(ticker);
+                tickerNode.appendChild(tickerText);
+                rowNode.appendChild(tickerNode);
+
+                let quantityNode = document.createElement("td")
+                let quantityText = document.createTextNode(quantity)
+                quantityNode.appendChild(quantityText)
+                rowNode.appendChild(quantityNode)
+
+                let priceNode = document.createElement("td")
+                let priceText = document.createTextNode("$" + price)
+                priceNode.appendChild(priceText)
+                rowNode.appendChild(priceNode)
+
+                let valueNode = document.createElement("td")
+                let valueText = document.createTextNode("$" + quantity * price)
+                valueNode.appendChild(valueText)
+                rowNode.appendChild(valueNode)
+
+                stockTable.appendChild(rowNode);
+            });            
         }
     })    
 })

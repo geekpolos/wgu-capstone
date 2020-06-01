@@ -41,15 +41,12 @@ app.get('/track-stocks/get', (req, res) => {
         
         var dbo = db.db("heroku_c0mkznrv");
 
-        dbo.collection("stocks").findOne({}, function(err, result) {
+        dbo.collection("stocks").find({}).toArray(function(err, result) {
             if (err) throw err;
-            res.send({
-                stock: result
-            })
-            db.close();            
+            db.close();
+            res.send(result)            
         });
     });    
-
 })
 
 app.get('/help', (req, res) => {
