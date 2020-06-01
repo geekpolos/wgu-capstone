@@ -1,7 +1,5 @@
 console.log('Loaded from track-stocks.js')
 
-const stockTable = document.querySelector('stock-table-body')
-
 fetch('/track-stocks/get').then((response) => {
     response.json().then((data) => {
         if (data.error) {
@@ -54,7 +52,11 @@ fetch('/track-stocks/get').then((response) => {
     })    
 })
 
-function myFunction() {
+/* 
+Name: onDropdownChange
+Description: This function will update the ticker, quantity, and price input fields when a new ticker is selected in the dropdown menu. 
+*/
+function onDropdownChange() {
     var value = document.getElementById("stockDropdownMenu").value;
     
     if(value !== 'add-stock') {        
