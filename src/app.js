@@ -40,12 +40,23 @@ app.get('/track-stocks/get', (req, res) => {
         if (err) throw err;
         
         var dbo = db.db("heroku_c0mkznrv");
+        const collection = dbo.collection('stocks')
 
-        dbo.collection("stocks").find({}).toArray(function(err, result) {
-            if (err) throw err;
-            db.close();
-            res.send(result)            
-        });
+        if(!req.query.ticker) {
+            // if no ticker (stock symbol) is provided, then get all stocks
+            collection.find({}).toArray(function(err, result) {
+                if (err) throw err
+                db.close()
+                res.send(result)            
+            });
+        } else if (req.query.ticker) {
+            // if ticker is provided, get information for that individual ticker
+            collection.find({ticker: req.query.ticker}).toArray((err, items) => {
+                if (err) throw err                
+                db.close()
+                res.send(items)
+            })
+        }
     });    
 })
 

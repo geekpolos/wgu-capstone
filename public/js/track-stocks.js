@@ -53,3 +53,22 @@ fetch('/track-stocks/get').then((response) => {
         }
     })    
 })
+
+function myFunction() {
+    var value = document.getElementById("stockDropdownMenu").value;
+    
+    if(value !== 'add-stock') {        
+        fetch('/track-stocks/get?ticker='+value).then((response) => {
+            response.json().then((data) => {
+                if(data.error) {
+                    document.getElementById("alertMessage").innerHTML = '<div class="alert alert-danger" role="alert" id="alertMessage">My Stock Tracker was unable to connect to the database. Please try again later.</div>';
+                } else {
+                    console.log(data)
+                    document.getElementById("ticker").value = value;
+                    document.getElementById("quantity").value = data[0].quantity;
+                    document.getElementById("price").value = data[0].price;
+                }
+            })
+        })
+    }
+}
