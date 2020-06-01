@@ -1,5 +1,9 @@
 console.log('Loaded from track-stocks.js')
 
+/*
+Name: PopulateStocks
+Description: Using the JSON from /track-stocks/get, the fetch below will populate the current stocks table and the drop down menu.
+*/
 fetch('/track-stocks/get').then((response) => {
     response.json().then((data) => {
         if (data.error) {
@@ -14,7 +18,7 @@ fetch('/track-stocks/get').then((response) => {
                 let price = table.price
                 counter++;
 
-                var select = document.getElementById("stockDropdownMenu");
+                let select = document.getElementById("stockDropdownMenu");
                 select.options[select.options.length] = new Option(ticker, ticker);
 
                 /* Populate stock table with user stock information */
@@ -57,7 +61,7 @@ Name: onDropdownChange
 Description: This function will update the ticker, quantity, and price input fields when a new ticker is selected in the dropdown menu. 
 */
 function onDropdownChange() {
-    var value = document.getElementById("stockDropdownMenu").value;
+    let value = document.getElementById("stockDropdownMenu").value;
     
     if(value !== 'add-stock') {        
         fetch('/track-stocks/get?ticker='+value).then((response) => {
@@ -65,7 +69,6 @@ function onDropdownChange() {
                 if(data.error) {
                     document.getElementById("alertMessage").innerHTML = '<div class="alert alert-danger" role="alert" id="alertMessage">My Stock Tracker was unable to connect to the database. Please try again later.</div>';
                 } else {
-                    console.log(data)
                     document.getElementById("ticker").value = value;
                     document.getElementById("quantity").value = data[0].quantity;
                     document.getElementById("price").value = data[0].price;
@@ -73,4 +76,31 @@ function onDropdownChange() {
             })
         })
     }
+}
+
+/*
+Name: submitStockInformation
+Description: On the update/add form, the user can select add stock or update a stock. If the user add a stock, a stock will be added to the collection as a new document. If the user chooses udpate, the quantity and price will be udpated. 
+*/
+function submitStockInformation() {
+    let ticker = document.getElementById("ticker").value
+    let quantity = document.getElementById("quantity").value
+    let price = document.getElementById("price").value
+    let selectValue = document.getElementById("stockDropdownMenu").value 
+    let fetchURL = '/track-stocks/update?ticker='+ticker+'&quantity='+quantity+'&price='+price+'&add=false'
+
+    if(selectValue === 'add-stock') {
+        fetchURL = '/track-stocks/update?ticker='+ticker+'&quantity='+quantity+'&price='+price+'&add=true'
+        alert(fetchURL)
+    }
+
+    fetch(fetchURL).then((response) => {
+        response.json().then((data) => {
+            if(data.error) {
+                document.getElementById("alertMessage").innerHTML = '<div class="alert alert-danger" role="alert" id="alertMessage">My Stock Tracker was unable to connect to the database. Please try again later.</div>';
+            } else {
+                //alert('/track-stocks/update?ticker='+ticker)
+            }
+        })
+    })
 }

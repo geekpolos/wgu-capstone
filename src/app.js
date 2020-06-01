@@ -60,6 +60,42 @@ app.get('/track-stocks/get', (req, res) => {
     });    
 })
 
+app.get('/track-stocks/update', (req, res) => {
+    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    var MongoClient = require('mongodb').MongoClient;
+
+    MongoClient.connect(mongoURI, function(err, db) {
+        if (err) throw err;
+        
+        var dbo = db.db("heroku_c0mkznrv");
+        const collection = dbo.collection('stocks')
+
+        if(!req.query.ticker) {
+            // do something if no ticker
+        } else if (req.query.ticker && req.query.add === "false") {
+            collection.updateOne(
+                {ticker: req.query.ticker}, 
+                {'$set':
+                    {
+                        'quantity': req.query.quantity,
+                        'price': req.query.price
+                    }
+                }, (err, item) => {
+                    //console.log(item)
+                })
+        } else if (req.query.ticker && req.query.add === "true") {
+            collection.insertOne(
+                {
+                    ticker: req.query.ticker,
+                    quantity: req.query.quantity,
+                    price: req.query.price
+                }, (err, result) => {
+
+            })
+        }
+    });    
+})
+
 app.get('/help', (req, res) => {
     res.render('help', {
 
