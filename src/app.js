@@ -7,15 +7,6 @@ require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 3000
 
-const mongoose = require('mongoose')
-const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
-console.log('------------------------')
-console.log(process.env.DB_USERNAME)
-console.log('------------------------')
-mongoose.connect(mongoURI)
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'))
-
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public/')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -39,6 +30,26 @@ app.get('/track-stocks', (req, res) => {
     res.render('track-stocks', {
 
     })
+})
+
+app.get('/track-stocks/get', (req, res) => {
+    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    var MongoClient = require('mongodb').MongoClient;
+
+    MongoClient.connect(mongoURI, function(err, db) {
+        if (err) throw err;
+        
+        var dbo = db.db("heroku_c0mkznrv");
+
+        dbo.collection("stocks").findOne({}, function(err, result) {
+            if (err) throw err;
+            res.send({
+                stock: result
+            })
+            db.close();            
+        });
+    });    
+
 })
 
 app.get('/help', (req, res) => {
