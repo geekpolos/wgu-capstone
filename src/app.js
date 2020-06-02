@@ -1,13 +1,23 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const dont = require('dotenv')
+const mongoose = require('mongoose')
+const app = express()
+const dot = require('dotenv')
 require('dotenv').config()
 
-var mongoose = require('mongoose'); 
+// Simple encapuslation
+function DatabaseInformation () {
 
-const app = express()
-const port = process.env.PORT || 3000
+    // Setup the port for Heroku environment and local environment
+    this.port = process.env.PORT || 3000;
+
+    // Create URI for mongodb location on Heroku
+    this.uri = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    
+}
+// Create the object
+const dbInfo = new DatabaseInformation()
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public/')
@@ -35,7 +45,8 @@ app.get('/track-stocks', (req, res) => {
 })
 
 app.get('/track-stocks/get', (req, res) => {
-    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    //const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
 
     MongoClient.connect(mongoURI, function(err, db) {
@@ -126,6 +137,6 @@ app.get('/help', (req, res) => {
     })
 })
 
-app.listen(port, () => {
-    console.log('Server started on port ' + port + '.')
+app.listen(dbInfo.port, () => {
+    console.log('Server started on port ' + dbInfo.port + '.')
 })
