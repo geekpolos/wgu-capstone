@@ -13,13 +13,19 @@ fetch('/track-stocks/get').then((response) => {
 
             data.forEach(function(table) {
                 
+                let tickerid = table._id
                 let ticker = table.ticker;
                 let quantity = table.quantity
                 let price = table.price
                 counter++;
 
+                /* Populate the add/update ticker drop down menu */
                 let select = document.getElementById("stockDropdownMenu");
                 select.options[select.options.length] = new Option(ticker, ticker);
+
+                /* Populate the delete ticker drop down menu */
+                let selectDelete = document.getElementById("stockDeleteDropdownMenu");
+                selectDelete.options[selectDelete.options.length] = new Option(ticker, tickerid);
 
                 /* Populate stock table with user stock information */
                 let stockTable = document.getElementById("stock-table");
@@ -90,8 +96,7 @@ function submitStockInformation() {
     let fetchURL = '/track-stocks/update?ticker='+ticker+'&quantity='+quantity+'&price='+price+'&add=false'
 
     if(selectValue === 'add-stock') {
-        fetchURL = '/track-stocks/update?ticker='+ticker+'&quantity='+quantity+'&price='+price+'&add=true'
-        alert(fetchURL)
+        fetchURL = '/track-stocks/update?ticker='+ticker+'&quantity='+quantity+'&price='+price+'&add=true'        
     }
 
     fetch(fetchURL).then((response) => {
@@ -103,4 +108,27 @@ function submitStockInformation() {
             }
         })
     })
+}
+
+/*
+Name: 
+Description: 
+*/
+function deleteStockInformation() {
+    let tickerid = document.getElementById("stockDeleteDropdownMenu").value
+    let deleteValue = document.getElementById("stockDeleteDropdownMenu").value 
+    
+    if(deleteValue !== "default") {
+        fetchURL = '/track-stocks/delete?id='+tickerid
+
+        fetch(fetchURL).then((response) => {
+            response.json().then((data) => {
+                if(data.error) {
+                    document.getElementById("alertMessage").innerHTML = '<div class="alert alert-danger" role="alert" id="alertMessage">My Stock Tracker was unable to connect to the database. Please try again later.</div>';
+                } else {
+                    //alert('/track-stocks/update?ticker='+ticker)
+                }
+            })
+        })
+    } 
 }

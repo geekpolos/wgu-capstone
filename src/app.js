@@ -4,6 +4,8 @@ const hbs = require('hbs')
 const dont = require('dotenv')
 require('dotenv').config()
 
+var mongoose = require('mongoose'); 
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -89,8 +91,30 @@ app.get('/track-stocks/update', (req, res) => {
                     ticker: req.query.ticker,
                     quantity: req.query.quantity,
                     price: req.query.price
-                }, (err, result) => {
+                }, (err, result) => {                    
+                    db.close()
+            })
+        }
+    });    
+})
 
+app.get('/track-stocks/delete', (req, res) => {
+    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    var MongoClient = require('mongodb').MongoClient;
+
+    MongoClient.connect(mongoURI, function(err, db) {
+        if (err) throw err;
+        
+        var dbo = db.db("heroku_c0mkznrv");
+        const collection = dbo.collection('stocks')
+
+        if(!req.query.id) {
+            // do something if no id is passed
+        } else if(req.query.id) {
+            let stockId = mongoose.Types.ObjectId(req.query.id);            
+            collection.deleteOne({_id: stockId}, (err, item) => {                
+                db.close()
+                res.send(item)
             })
         }
     });    

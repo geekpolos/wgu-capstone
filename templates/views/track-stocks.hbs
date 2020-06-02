@@ -39,7 +39,7 @@
                         <th scope="col">Ticker</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Value</th>
+                        <th scope="col">Value</th>                        
                         </tr>
                     </thead>
                     <tbody id="stock-table-body">
@@ -48,11 +48,11 @@
                     </table>
             </div>
             <div class="col-sm rounded" id="stockTickerForm">
-                <h2>Update or Add New Tickers</h2>
+                <h2>Add/Update New Tickers</h2>
                 <form onsubmit="submitStockInformation()">
                     <div class="form-group dropdown">
                         <select class="custom-select" id="stockDropdownMenu" onchange="onDropdownChange()">
-                            <option selected>Open this select menu</option>
+                            <option selected>Select Ticker or Add New</option>
                             <option value="add-stock">Add Stock</option>                            
                         </select>
                     </div>
@@ -68,11 +68,22 @@
                         <label for="price">Price</label>
                         <input type="number" class="form-control" id="price" placeholder="Price of individual stock - $4.50, $8.63, $10.24">
                     </div>                    
-                    <button type="submit" class="btn btn-primary">Submit Information</button>
+                    <button type="submit" class="btn btn-primary">Submit Info</button>
                 </form>
-            </div>            
-        </div> 
-        
+
+                <hr />
+
+                <h2>Delete Tickers</h2>
+                <form onsubmit="deleteStockInformation()">
+                    <div class="form-group dropdown">
+                        <select class="custom-select" id="stockDeleteDropdownMenu">
+                            <option selected value="default">Select Ticker to Delete</option>                            
+                        </select>
+                    </div>                                    
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>                        
+        </div>     
     </main>
 
     {{>footer}}
