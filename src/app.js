@@ -7,15 +7,19 @@ const dot = require('dotenv')
 require('dotenv').config()
 
 // Simple encapuslation
-function DatabaseInformation () {
+class DatabaseInformation {
+    constructor() {
+        // a private variable for my local environment port
+        let localEnvironmentPort = 3000
+        
+        // Setup the port for Heroku environment and local environment
+        this.port = process.env.PORT || localEnvironmentPort
 
-    // Setup the port for Heroku environment and local environment
-    this.port = process.env.PORT || 3000;
-
-    // Create URI for mongodb location on Heroku
-    this.uri = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
-    
+        // Create URI for mongodb location on Heroku
+        this.uri = "mongodb://" + process.env.DB_USERNAME + ":" + process.env.DB_PASSWORD + "@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    }
 }
+
 // Create the object
 const dbInfo = new DatabaseInformation()
 
@@ -44,8 +48,7 @@ app.get('/track-stocks', (req, res) => {
     })
 })
 
-app.get('/track-stocks/get', (req, res) => {
-    //const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+app.get('/track-stocks/get', (req, res) => {    
     const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
 
@@ -74,7 +77,7 @@ app.get('/track-stocks/get', (req, res) => {
 })
 
 app.get('/track-stocks/update', (req, res) => {
-    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
 
     MongoClient.connect(mongoURI, function(err, db) {
@@ -110,7 +113,7 @@ app.get('/track-stocks/update', (req, res) => {
 })
 
 app.get('/track-stocks/delete', (req, res) => {
-    const mongoURI = "mongodb://"+process.env.DB_USERNAME+":"+process.env.DB_PASSWORD+"@ds347298.mlab.com:47298/heroku_c0mkznrv"
+    const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
 
     MongoClient.connect(mongoURI, function(err, db) {
