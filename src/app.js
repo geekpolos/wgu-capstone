@@ -3,6 +3,10 @@ const express = require('express')
 const hbs = require('hbs')
 const mongoose = require('mongoose')
 const app = express()
+
+const PDFDocument = require('pdfkit');
+
+const fs = require('fs');
 const dot = require('dotenv')
 require('dotenv').config()
 
@@ -53,6 +57,48 @@ app.get('/reports', (req, res) => {
     res.render('reports', {
         title: "Reports"
     })
+})
+
+// Generate a pdf report for the user
+app.get('/reports/generate', (req, res) => {
+
+    const mongoURI = dbInfo.uri
+    var MongoClient = require('mongodb').MongoClient;
+
+    MongoClient.connect(mongoURI, function(err, db) {
+        if (err) throw err;
+        
+        var dbo = db.db("heroku_c0mkznrv");
+        const collection = dbo.collection('stocks')
+        collection.find({}).toArray(function(err, result) {
+            if (err) throw err
+
+            const doc = new PDFDocument
+            doc.pipe(fs.createWriteStream('./public/downloads/my-stock-tracker-report.pdf'))
+            doc.fontSize(14).text("My Stock Tracker Report", 25, 20)
+            let counter = 1
+
+            for ( var i = 0; i < result.length; i++) {
+                var obj = result[i]                
+                var reportLine = ""                
+
+                for ( var key in obj) {
+                    if(key !== "_id") {
+                        reportLine = reportLine + key + ": " + obj[key] + ", "
+                    }
+                }
+                doc.fontSize(14).text(reportLine, 25, 20 * counter + 20)
+                counter++
+            }
+                        
+            doc.end()
+            db.close()
+            res.send({
+                success: true
+            })            
+        });       
+    });    
+
 })
 
 app.get('/help', (req, res) => {
