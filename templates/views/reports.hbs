@@ -13,11 +13,17 @@
     <main role="main" class="container-fluid">
         <div class="jumbotron jumbotron-fluid text-center rounded addBottomSpacing" id="homepage-jumbotron">
             <h1>Reports</h1>
-            <p class="lead">Generate a report of your stocks</p>
+            <p class="lead">Generate a report of your stocks</p>            
         </div>
 
+        <a href="../downloads/my-stock-tracker-report.pdf">download report</a>
     </main>
 
     {{>footer}}
+
+    <script>
+        var liElement = document.getElementById("reports");
+        liElement.classList.add("active");        
+    </script>
 </body>
 </html>
