@@ -36,18 +36,32 @@ hbs.registerPartials(partialsPath)
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
+// Setup routes for user pages
 app.get('', (req, res) => {
     res.render('index', {
-
+        title: "Home"
     })
 })
 
 app.get('/track-stocks', (req, res) => {
     res.render('track-stocks', {
-
+        title: "Track Stocks"
     })
 })
 
+app.get('/reports', (req, res) => {
+    res.render('reports', {
+        title: "Reports"
+    })
+})
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+        title: "Help"
+    })
+})
+
+// /track-stocks/get will send a JSON response for all stock information or an individual stock
 app.get('/track-stocks/get', (req, res) => {    
     const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
@@ -76,6 +90,7 @@ app.get('/track-stocks/get', (req, res) => {
     });    
 })
 
+// /track-stocks/update will update an individual stock
 app.get('/track-stocks/update', (req, res) => {
     const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
@@ -112,6 +127,7 @@ app.get('/track-stocks/update', (req, res) => {
     });    
 })
 
+// /track-stocks/delete will delete an individual stock from the database
 app.get('/track-stocks/delete', (req, res) => {
     const mongoURI = dbInfo.uri
     var MongoClient = require('mongodb').MongoClient;
@@ -132,12 +148,6 @@ app.get('/track-stocks/delete', (req, res) => {
             })
         }
     });    
-})
-
-app.get('/help', (req, res) => {
-    res.render('help', {
-
-    })
 })
 
 app.listen(dbInfo.port, () => {
