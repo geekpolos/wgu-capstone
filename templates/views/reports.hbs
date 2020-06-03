@@ -20,6 +20,7 @@
                 <img src="../images/list-image.png" class="rounded img-fluid">
             </div>
             <div class="col-sm-8">
+                <span id="alertMessage"></span>
                 <p>At My Stock Tracker, you can generate and download a PDF report of your stocks. This is handy if you need to give information to your accountant!</p>
                 <p>The PDF report will display the ticker symbol, the current quantity, and the price entered into My Stock Tracker.</p>
                 <h4>Step 1) Click Generate</h4>
@@ -27,9 +28,9 @@
                 <p><a class="btn btn-outline-primary" href="#" role="button" id="generateButton">Generate Your Report</a></p>
                 <h4>Step 2) Click Download</h4>
                 <p>Once the report is generated, click on download report to get your PDF.</p>
-                <p><a class="btn btn-outline-secondary disabled" href="../downloads/my-stock-tracker-report.pdf" role="button" id="downloadButton">Download Your Report</a></p>
+                <p><a class="btn btn-outline-secondary disabled" href="../downloads/my-stock-tracker-report.pdf" role="button" id="downloadButton" target="_new">Download Your Report</a></p>
             </div>
-        </div>        
+        </div>
     </main>
 
     {{>footer}}
