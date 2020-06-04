@@ -3,12 +3,15 @@ const express = require('express')
 const hbs = require('hbs')
 const mongoose = require('mongoose')
 const app = express()
-
 const PDFDocument = require('pdfkit');
-
 const fs = require('fs');
 const dot = require('dotenv')
 require('dotenv').config()
+
+// My Class
+const DataSanitize = require("./data-sanitize.js")
+var sanitize = new DataSanitize()
+console.log(sanitize.name)
 
 // Simple encapuslation
 class DatabaseInformation {
@@ -59,6 +62,12 @@ app.get('/reports', (req, res) => {
     })
 })
 
+app.get('/help', (req, res) => {
+    res.render('help', {
+        title: "Help"
+    })
+})
+
 // Generate a pdf report for the user
 app.get('/reports/generate', (req, res) => {
 
@@ -99,12 +108,6 @@ app.get('/reports/generate', (req, res) => {
         });       
     });    
 
-})
-
-app.get('/help', (req, res) => {
-    res.render('help', {
-        title: "Help"
-    })
 })
 
 // /track-stocks/get will send a JSON response for all stock information or an individual stock
