@@ -13,8 +13,11 @@ const DataSanitize = require("./data-sanitize.js")
 const DataPrevent = require("./data-prevent.js")
 
 var something = new DataPrevent()
-console.log(something.name)
-console.log(something.numberSanitize(123))
+//console.log(something.returnOnlyLetters("how19 a*re 254y**ou?>><<"))
+//console.log(something.returnLettersNumbersSpaces("how19 a*re 254y**ou?>><<"))
+console.log(something.returnOnlyNumbers("how19 a*re 254y**ou?>><<"))
+// console.log(something.name)
+// console.log(something.numberSanitize(123))
 
 //var sanitize = new DataSanitize()
 //console.log(sanitize.name)
