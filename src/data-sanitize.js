@@ -1,16 +1,37 @@
-console.log('data-santize.js')
+/*
+Class Name: DataSanitize
+Class Description: To provide basic data sanitize functionality to check for numbers, strings, or boolean values.
+*/
 
-function dataSanitize() {
-    this.name = "data sanitize"
-}
+module.exports = class DataSanitize {
+    
+    constructor() {
+        this.name = "Data Sanitize Class"
+    }
 
-// Sanitize.prototype.isNumber => (i) {
+    // Getter Method
+    getName() {
+        return `${this.name}`
+    }
 
-//     if(typeof i !== 'number'){
-//       return false;
-//     }
-  
-//     return true;
-//   }
+    // Setter Method
+    setName(newName) {
+        this.name = newName
+    }
 
-module.exports = dataSanitize
+    // Check to see if data is a number
+    numberSanitize(data) {
+        return Number.isInteger(data)
+    }
+
+    // Check to see if data is a string
+    stringSanitize(data) {
+        return typeof data === 'string'
+    }
+
+    // Check to see if data is a boolean
+    booleanSanitize(data) {
+        return typeof data === 'boolean'
+    }
+
+};

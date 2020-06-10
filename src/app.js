@@ -10,9 +10,16 @@ require('dotenv').config()
 
 // My Class
 const DataSanitize = require("./data-sanitize.js")
+const DataPrevent = require("./data-prevent.js")
 
-var sanitize = new DataSanitize()
-console.log(sanitize.name)
+var something = new DataPrevent()
+console.log(something.name)
+console.log(something.numberSanitize(123))
+
+//var sanitize = new DataSanitize()
+//console.log(sanitize.name)
+// console.log(sanitize.numberSanitize(123))
+// console.log(sanitize.stringSanitize("test"))
 
 // Simple encapuslation
 class DatabaseInformation {
