@@ -1,5 +1,3 @@
-console.log('Loaded from track-stocks.js')
-
 /*
 Name: PopulateStocks
 Description: Using the JSON from /track-stocks/get, the fetch below will populate the current stocks table and the drop down menu.

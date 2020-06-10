@@ -25,6 +25,13 @@ module.exports = class DataPrevent extends DataSanitize {
         return s
     }
 
+    // This will return a string with only numbers and decimals
+    returnNumbersAndDecimals(string = '') {
+        let s = string
+        s = s.replace(/[^0-9.]/g, '')
+        return s
+    }
+
     // This will return a string with only letters, numbers, and spaces.
     returnLettersNumbersSpaces(string = '') {
         let s = string

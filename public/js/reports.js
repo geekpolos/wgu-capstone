@@ -1,4 +1,4 @@
-console.log('reports.js')
+// reports.js will generate the report on /reports/generate and then enable the 2nd button on the /reports page
 
 let generateButton = document.getElementById("generateButton");
 let downloadButton = document.getElementById("downloadButton");

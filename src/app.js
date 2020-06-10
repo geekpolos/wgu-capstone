@@ -12,18 +12,6 @@ require('dotenv').config()
 const DataSanitize = require("./data-sanitize.js")
 const DataPrevent = require("./data-prevent.js")
 
-var something = new DataPrevent()
-//console.log(something.returnOnlyLetters("how19 a*re 254y**ou?>><<"))
-//console.log(something.returnLettersNumbersSpaces("how19 a*re 254y**ou?>><<"))
-console.log(something.returnOnlyNumbers("how19 a*re 254y**ou?>><<"))
-// console.log(something.name)
-// console.log(something.numberSanitize(123))
-
-//var sanitize = new DataSanitize()
-//console.log(sanitize.name)
-// console.log(sanitize.numberSanitize(123))
-// console.log(sanitize.stringSanitize("test"))
-
 // Simple encapuslation
 class DatabaseInformation {
     constructor() {
@@ -72,25 +60,28 @@ class Server {
     }
 
     initRoutes() {
-        // Setup routes for user pages
+        // Setup home page route
         app.get('', (req, res) => {
             res.render('index', {
                 title: "Home"
             })
         })
 
+        // Setup track-stocks route
         app.get('/track-stocks', (req, res) => {
             res.render('track-stocks', {
                 title: "Track Stocks"
             })
         })
 
+        // Setup reports routes
         app.get('/reports', (req, res) => {
             res.render('reports', {
                 title: "Reports"
             })
         })
 
+        // Setup help routes
         app.get('/help', (req, res) => {
             res.render('help', {
                 title: "Help"
@@ -172,7 +163,14 @@ class Server {
         // /track-stocks/update will update an individual stock
         app.get('/track-stocks/update', (req, res) => {
             const mongoURI = dbInfo.uri
-            var MongoClient = require('mongodb').MongoClient;
+            var MongoClient = require('mongodb').MongoClient;            
+
+            // Clean up the data before it gets inserted
+            let dataPrevent = new DataPrevent()
+            console.log(dataPrevent.getName())
+            let ticker = dataPrevent.returnOnlyLetters(req.query.ticker)
+            let quantity = dataPrevent.returnOnlyNumbers(req.query.quantity) 
+            let price = dataPrevent.returnNumbersAndDecimals(req.query.price)
 
             MongoClient.connect(mongoURI, function(err, db) {
                 if (err) throw err;
@@ -182,13 +180,14 @@ class Server {
 
                 if(!req.query.ticker) {
                     // do something if no ticker
-                } else if (req.query.ticker && req.query.add === "false") {
+                } else if (req.query.ticker && req.query.add === "false") {                    
+
                     collection.updateOne(
-                        {ticker: req.query.ticker}, 
+                        {ticker: ticker}, 
                         {'$set':
                             {
-                                'quantity': req.query.quantity,
-                                'price': req.query.price
+                                'quantity': quantity,
+                                'price': price
                             }
                         }, (err, item) => {
                             //console.log(item)
@@ -196,9 +195,9 @@ class Server {
                 } else if (req.query.ticker && req.query.add === "true") {
                     collection.insertOne(
                         {
-                            ticker: req.query.ticker,
-                            quantity: req.query.quantity,
-                            price: req.query.price
+                            ticker: ticker,
+                            quantity: quantity,
+                            price: price
                         }, (err, result) => {                    
                             db.close()
                     })
